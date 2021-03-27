@@ -1,0 +1,21 @@
+#to_find_list {
+    position: fixed;
+    box-shadow: 0px 0px 20px black inset;
+    display: flex;
+    bottom: 50px;
+    width: 80%;
+    left: 10%;
+    overflow-y: hidden;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.233);
+    border-radius: 10px;
+}
+
+.to_find_item {
+    border: 3px solid gold;
+    border-radius: 10px;
+    margin: 10px;
+    color: gold;
+    padding: 5px;
+    font-size: 30px;
+}

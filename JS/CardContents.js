@@ -1,0 +1,54 @@
+var level_subheading = [];
+
+level_subheading[0] = "the subheading 1";
+level_subheading[1] = "";
+level_subheading[2] = "";
+level_subheading[3] = "";
+level_subheading[4] = "";
+level_subheading[5] = "";
+level_subheading[6] = "";
+level_subheading[7] = "";
+level_subheading[8] = "";
+level_subheading[9] = "";
+level_subheading[10] = "";
+level_subheading[11] = "";
+level_subheading[12] = "";
+level_subheading[13] = "";
+level_subheading[14] = "";
+level_subheading[15] = "";
+level_subheading[16] = "";
+level_subheading[17] = "";
+level_subheading[18] = "";
+level_subheading[19] = "";
+level_subheading[20] = "";
+level_subheading[21] = "";
+level_subheading[22] = "";
+level_subheading[23] = "";
+
+
+var descriptions = [];
+descriptions[0] = "This is content of level 1";
+descriptions[1] = "this is a contenet of level 2 which is 2";
+descriptions[2] = "";
+descriptions[3] = "";
+descriptions[4] = "";
+descriptions[5] = "";
+descriptions[6] = "";
+descriptions[7] = "";
+descriptions[8] = "";
+descriptions[9] = "";
+descriptions[10] = "";
+descriptions[11] = "";
+descriptions[12] = "";
+descriptions[13] = "";
+descriptions[14] = "";
+descriptions[15] = "";
+descriptions[16] = "";
+
+var reward_card_name = [];
+reward_card_name[0] = "<b>the daily reward</b>";
+reward_card_name[1] = "";
+reward_card_name[2] = "";
+reward_card_name[3] = "";
+reward_card_name[4] = "";
+reward_card_name[5] = "";
