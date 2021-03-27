@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0px;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        canvas {
+            margin: 0px;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <link rel="stylesheet" href="JS/paused.css">
+    <link rel="stylesheet" href="JS/finder.css">
+</head>
+
+<body>
+
+
+    <button id="settings_from_main"><img src="/Images/settings.png" width="20px" height="20px" alt="image"></button>
+    <button id="pausebtn" onclick="togglePause()">⬛</button>
+
+
+    <div id="paused">
+        <h1>Game paused</h1>
+        <button id="resume_btn" onclick="resume()">Resume</button>
+        <br />
+        <button id="settings_btn">Settings</button><br />
+        <button id="exit" onclick="exit()">Exit</button>
+    </div>
+
+    <div id="to_find_list">
+        <div class="to_find_item">scroll</div>
+        <div class="to_find_item">sword</div>
+        <div class="to_find_item">swordigos</div>
+        <div class="to_find_item"></div>
+        <div class="to_find_item"></div>
+        <div class="to_find_item"></div>
+        <div class="to_find_item"></div>
+        <div class="to_find_item"></div>
+        <div class="to_find_item"></div>
+    </div>
+
+    <!=================================================================================================>
+
+    <canvas id="canvas"></canvas>
+    <script src="https://cdn.babylonjs.com/babylon.max.js"></script>
+    <script src="https://cdn.babylonjs.com/proceduralTexturesLibrary/babylonjs.proceduralTextures.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="JS/treeMaker.js"></script>
+    <script>
+        var scroll_x = 7;
+        var scroll_y = 0;
+        var scroll_z = 5;
+
+
+        function exit() {
+            window.history.back();
+        }
+
+        function togglePause() {
+            document.getElementById("paused").style.display = "block";
+        }
+
+        function resume() {
+            document.getElementById("paused").style.display = "none";
+        }
+    </script>
+    <script>
+        const canvas = document.getElementById("canvas");
+        const engine = new BABYLON.Engine(canvas, true);
+
+        var createScene = function() {
+            var scene = new BABYLON.Scene(engine);
+            engine.enableOfflineSupport = false;
+            scene.clearColor = new BABYLON.Color3.Black();
+
+            var bark = new BABYLON.Texture("Images/bark.JPG", scene);
+
+            var leaf_material = new BABYLON.StandardMaterial("material", scene);
+            leaf_material.diffuseColor = new BABYLON.Color3.Green();
+            var trunk_material = new BABYLON.StandardMaterial("mater2", scene);
+            trunk_material.diffuseColor = new BABYLON.Color3(1.16, 0.56, 0.56);
+            trunk_material.diffuseTexture = bark;
+            trunk_material.ambientColor = new BABYLON.Color3(0.3, 0.3, 0.3);
+            trunk_material.specularColor = new BABYLON.Color3(0.5, 0.6, 0.87);
+            var mater = new BABYLON.StandardMaterial("material2", scene);
+            mater.diffuseColor = new BABYLON.Color3.Green();
+
+
+            var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 10, 0), scene);
+            light.diffuse = new BABYLON.Color3.White();
+
+
+            //var container = BABYLON.SceneLoader.ImportMesh("", "", "character.babylon", scene, function(model) {});
+            //container.position = new BABYLON.Vector3(0, 0, -5);
+            //container.material = mater;
+
+
+            /*var tree = createTree(trunkHeight, trunkTaper, trunkSlices, trunkMaterial, boughs,
+             forks, forkAngle, forkRatio, branches, branchAngle,
+             bowFreq, bowHeight, leavesOnBranch, leafWHRatio, leafMaterial, scene);*/
+
+            //Tree parameters			
+            var trunk_height = 20;
+            var trunk_taper = 0.6;
+            var trunk_slices = 5;
+            var boughs = 2; // 1 or 2
+            var forks = 4;
+            var fork_angle = Math.PI / 4;
+            var fork_ratio = 2 / (1 + Math.sqrt(5)); //PHI the golden ratio
+            var branch_angle = Math.PI / 3;
+            var bow_freq = 2;
+            var bow_height = 3.5;
+            var branches = 10;
+            var leaves_on_branch = 5;
+            var leaf_wh_ratio = 0.5;
+
+            var tree1 = createTree(trunk_height, trunk_taper, trunk_slices, trunk_material, boughs,
+                forks, fork_angle, fork_ratio, branches, branch_angle,
+                bow_freq, bow_height, leaves_on_branch, leaf_wh_ratio, leaf_material, scene);
+
+
+            var tree2 = createTree(trunk_height, trunk_taper, trunk_slices, trunk_material, boughs,
+                forks, fork_angle, fork_ratio, branches, branch_angle,
+                bow_freq, bow_height, leaves_on_branch, leaf_wh_ratio, leaf_material, scene);
+
+
+            var tree3 = createTree(trunk_height, trunk_taper, trunk_slices, trunk_material, boughs,
+                forks, fork_angle, fork_ratio, branches, branch_angle,
+                bow_freq, bow_height, leaves_on_branch, leaf_wh_ratio, leaf_material, scene);
+
+
+            var tree4 = createTree(trunk_height, trunk_taper, trunk_slices, trunk_material, boughs,
+                forks, fork_angle, fork_ratio, branches, branch_angle,
+                bow_freq, bow_height, leaves_on_branch, leaf_wh_ratio, leaf_material, scene);
+
+
+            var tree5 = createTree(trunk_height, trunk_taper, trunk_slices, trunk_material, boughs,
+                forks, fork_angle, fork_ratio, branches, branch_angle,
+                bow_freq, bow_height, leaves_on_branch, leaf_wh_ratio, leaf_material, scene);
+
+            var Y_gr = -7;
+
+
+            var grassMater = new BABYLON.StandardMaterial("matergrass", scene);
+            var grassTexture = new BABYLON.Texture("Images/grass.png", scene);
+            grassMater.diffuseTexture = grassTexture;
+
+
+            var ground;
+
+            for (var i = -1000; i < 6000; i += 60) {
+                for (var j = -1000; j < 6000; j += 60) {
+                    ground = BABYLON.MeshBuilder.CreateGround("ground", {
+                        width: 60,
+                        height: 60
+                    }, scene);
+                    ground.material = grassMater;
+                    ground.position = new BABYLON.Vector3(i, -7, j);
+
+                }
+            }
+
+
+
+            const scroll = new BABYLON.SceneLoader.ImportMesh("", "3d models/", "scroll.babylon",
+                scene,
+                function(meshes) {
+                    console.log(meshes[0]);
+                    meshes[0].position = new BABYLON.Vector3(6, 5, 65);
+                    meshes.forEach(function(mesh) {
+                        mesh.rotation.y = 90;
+                    });
+                });
+
+
+
+            tree1.position = new BABYLON.Vector3(6, -10, 60);
+            tree2.position = new BABYLON.Vector3(10, -10, 70);
+            tree3.position = new BABYLON.Vector3(20, -10, 40);
+            tree4.position = new BABYLON.Vector3(30, -10, 60);
+            tree5.position = new BABYLON.Vector3(40, -10, 60);
+
+            var camera = new BABYLON.TouchCamera("FREE",
+                new BABYLON.Vector3(0, 0, -10), scene);
+            //camera.position = new BABYLON.Vector3(0, 0, 0);
+            camera.radius = 10;
+            camera.heightOffset = 0;
+            camera.attachControl(canvas, true);
+
+            var cameraManager = camera.inputs;
+
+            light.parent = camera;
+
+            return scene;
+        }
+
+        var scene = new createScene();
+        engine.runRenderLoop(function() {
+            var camera = scene.getCameraByName("FREE");
+            scene.render();
+        });
+    </script>
+</body>
+
+</html>
